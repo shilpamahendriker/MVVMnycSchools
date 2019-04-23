@@ -34,19 +34,19 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.SchoolView
     public SchoolAdapter.SchoolViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         //inflating and returning the view holder
 
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View view = inflater.inflate(R.layout.recycler_view_inner_layout, viewGroup,false);
         return new SchoolViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SchoolAdapter.SchoolViewHolder schoolViewHolder, final int i) {
+    public void onBindViewHolder(@NonNull SchoolAdapter.SchoolViewHolder schoolViewHolder,  final int i) {
         //getting the location of the specified position
         final School School = Schools.get(i);
 
         //binding the data with the view holder views
         schoolViewHolder.textSchoolName.setText(School.getSchoolName());
-        schoolViewHolder.textSchoolBorough.setText("Borough: " + School.getSchoolBorough());
+        schoolViewHolder.textSchoolBorough.setText("Borough: " + School.getBorough());
 
 
 
@@ -59,8 +59,8 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.SchoolView
 
                 // Sending DBN, Location and school name through the intent to school details activity
                 Intent intent = new Intent(context, SchoolDetailsActivity.class);
-                intent.putExtra("DBN", selection.getBdn());
-                intent.putExtra("LOCATION", selection.getSchoolLocation());
+                intent.putExtra("DBN", selection.getDbn());
+                intent.putExtra("LOCATION", selection.getLocation());
                 intent.putExtra("NAME",selection.getSchoolName());
                 context.startActivity(intent);
             }

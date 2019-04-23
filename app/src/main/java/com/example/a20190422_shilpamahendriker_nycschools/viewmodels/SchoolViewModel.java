@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.a20190422_shilpamahendriker_nycschools.model.School;
@@ -20,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SchoolViewModel extends ViewModel {
     //this is the data that we will fetch asynchronously
-    private MutableLiveData<ArrayList<School>> schoolList = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<School>> schoolList;
 
     //we will call this method to get the data
     public LiveData<ArrayList<School>> getSchools() {
@@ -54,16 +55,21 @@ public class SchoolViewModel extends ViewModel {
                 //finally we are setting the list to our MutableLiveData
 
                 schoolList.setValue(response.body());
+
+                Log.v("myLogs", "log: " + response);
+                Log.v ("myLogs", "schoolList " + response.body());
             }
 
             @Override
             public void onFailure(Call<ArrayList<School>> call, Throwable t) {
 
                 schoolList.setValue(null);
+                Log.v("myLogs"," Failed to retrieve data");
 
             }
         });
     }
 
 
+   // public Response
 }
