@@ -23,8 +23,9 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.SchoolView
     private ArrayList<School> Schools;
 
     //getting the context and Locations list with constructor
-    public SchoolAdapter(Context mContext, ArrayList<School> Schools) {
-        this.context = mContext;
+    public SchoolAdapter(Context context, ArrayList<School> Schools) {
+
+        this.context = context;
         this.Schools = Schools;
 
     }
@@ -68,7 +69,7 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.SchoolView
 
     @Override
     public int getItemCount() {
-        return 0;
+        return Schools.size();
     }
 
     class SchoolViewHolder extends RecyclerView.ViewHolder {
