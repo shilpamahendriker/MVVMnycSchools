@@ -20,19 +20,19 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SchoolViewModel extends ViewModel {
-    //this is the data that we will fetch asynchronously
+    //this is the data that will fetch asynchronously
     private MutableLiveData<ArrayList<School>> schoolList;
 
-    //we will call this method to get the data
+    //method to get the data
     public LiveData<ArrayList<School>> getSchools() {
-        //if the list is null
+        //if the arraylist is null
         if (schoolList == null) {
             schoolList = new MutableLiveData<>();
-            //we will load it asynchronously from server in this method
+            //load it asynchronously from server in this method
             loadSchools();
         }
 
-        //finally we will return the list
+        //finally return the arraylist
         return schoolList;
     }
 
@@ -52,24 +52,21 @@ public class SchoolViewModel extends ViewModel {
             @Override
             public void onResponse(Call<ArrayList<School>> call, Response<ArrayList<School>> response) {
 
-                //finally we are setting the list to our MutableLiveData
+                //finally set the list to MutableLiveData
 
                 schoolList.setValue(response.body());
 
-                Log.v("myLogs", "log: " + response);
-                Log.v ("myLogs", "schoolList " + response.body());
             }
 
             @Override
             public void onFailure(Call<ArrayList<School>> call, Throwable t) {
 
                 schoolList.setValue(null);
-                Log.v("myLogs"," Failed to retrieve data");
+
 
             }
         });
     }
 
 
-   // public Response
 }
